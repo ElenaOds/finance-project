@@ -1,11 +1,10 @@
 import TickersList from '../components/TickersList/TickersList';
 
 const MainPage = () => {
-   
-    return (
-        <>
-        <TickersList />
-        </>
+     return (
+      <div>
+      <TickersList />
+      </div>
     )
 }
 

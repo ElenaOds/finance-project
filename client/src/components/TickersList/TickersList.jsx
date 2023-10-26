@@ -17,7 +17,7 @@ const TickersList = () => {
   }, [dispatch]);
 
   return (
-    <div>
+  
       <Table>
         <Head>
       <Row>
@@ -37,8 +37,8 @@ const TickersList = () => {
         }  
      </tbody> 
       </Table>
-      </div>
-  
+     
+    
   );
 };
 

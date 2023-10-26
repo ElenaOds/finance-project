@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e8f4f8; 
 }
 
 code {
@@ -12,3 +13,26 @@ code {
     monospace;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%; 
+  height: auto; 
+}

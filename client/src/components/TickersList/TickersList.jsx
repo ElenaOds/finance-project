@@ -1,39 +1,44 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { socket } from '../../service/connection';
-import {
-  getTickers,
-  getTickersRequested,
-  getTickersError,
-} from "../../redux/actions";
-import { tickersData } from "../../redux/reducer";
+import { currentTickers } from "../../redux/tickerSlice";
 import TickerItem from '../TickerItem/TickerItem';
+
+import { Table, Head, Row, HeadTitle } from './TickersList.styled';
 
 const TickersList = () => {
   const dispatch = useDispatch();
-  const { currentTickers } = useSelector(tickersData);
-
+  const tickers = useSelector((state) => state.tickers);
   useEffect(() => {
-    dispatch(getTickersRequested());
     socket.emit("start");
-    socket.on("ticker", (quotes) => dispatch(getTickers(quotes)));
-    socket.on("connect_error", function () {
-      dispatch(getTickersError());
+    socket.on("ticker", (quote) => {
+      dispatch(currentTickers(quote));
     });
-    return () => {
-      socket.on('disconnect')
-    };
   }, [dispatch]);
+
   return (
-    < >
-    
     <div>
-        {currentTickers.map((tickerItem) => (
-      <TickerItem key={tickerItem.ticker} tickerItem={tickerItem} />
-  ))
-        }
+      <Table>
+        <Head>
+      <Row>
+        <HeadTitle>Ticker</HeadTitle>
+        <HeadTitle>Price</HeadTitle>
+        <HeadTitle>Change</HeadTitle>
+        <HeadTitle>Persentage</HeadTitle>
+        <HeadTitle>Dividend</HeadTitle>
+        <HeadTitle>Yield</HeadTitle>
+        <HeadTitle>Last traded</HeadTitle>
+      </Row>
+      </Head>
+      <tbody> 
+        {tickers.map((tickerItem) => (
+          <TickerItem key={tickerItem.ticker} tickerItem={tickerItem} />
+          ))
+        }  
+     </tbody> 
+      </Table>
       </div>
-    </>
+  
   );
 };
 

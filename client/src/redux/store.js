@@ -1,19 +1,10 @@
-import { legacy_createStore as createStore, applyMiddleware, combineReducers, compose } from "redux";
-import thunk from "redux-thunk";
-import tickersReducer from './reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import tickersReducer from "./tickerSlice";
 
-const initialState = {};
-
-const reducer = combineReducers({
+const store = configureStore({
+  reducer: {
     tickers: tickersReducer,
-  });
+  },
+});
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  reducer,
-  initialState,
-  composeEnhancer(applyMiddleware(thunk))
-);
-
-  
-  export default store;
+export default store;

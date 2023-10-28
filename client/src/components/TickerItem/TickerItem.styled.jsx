@@ -9,7 +9,7 @@ export const Row = styled.tr`
 }
  `
 
- export const Cell = styled.td`
+ export const Text = styled.span`
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 16px;
@@ -24,8 +24,4 @@ export const Row = styled.tr`
     @media screen and (min-width: 1280px) {
     font-size: 24px;
     }
-
  `
-
-
-

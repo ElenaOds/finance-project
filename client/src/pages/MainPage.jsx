@@ -7,6 +7,7 @@ const MainPage = () => {
       <Container>
         <Text>Finance stock is a web-site where you can trace stocks of the most popular companies in the world using NASDAQ exchange</Text>
       <TickersList />
+
       <Footer/>
       </Container>
      

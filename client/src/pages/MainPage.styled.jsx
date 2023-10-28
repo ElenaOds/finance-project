@@ -17,7 +17,6 @@ export const Container = styled.div`
     }
 `
 
-
 export const Text = styled.p`
     font-family: 'Roboto';
     font-weight: 500;

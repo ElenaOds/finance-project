@@ -14,6 +14,11 @@ const TickersList = () => {
     socket.on("ticker", (quote) => {
       dispatch(currentTickers(quote));
     });
+    return () => {
+      socket.on("disconnect", () => {
+        socket.off("ticker");
+      }); 
+    }
   }, [dispatch]);
 
   return (
@@ -28,6 +33,7 @@ const TickersList = () => {
         <HeadTitle>Dividend</HeadTitle>
         <HeadTitle>Yield</HeadTitle>
         <HeadTitle>Last traded</HeadTitle>
+        <HeadTitle>Tracking On/Off</HeadTitle>
       </Row>
       </Head>
       <tbody> 

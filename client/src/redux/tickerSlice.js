@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  currentTickers: [],
+}
 
 const tickerSlice = createSlice({
   name: "ticker",
-  initialState: [],
+  initialState,
   reducers: {
-    currentTickers: (state, action) => {
-      return state = action.payload;
+    setCurrentTickers: (state, action) => {
+      state.currentTickers = action.payload;
     },
+
   },
 });
 
-export const { currentTickers } = tickerSlice.actions;
+export const { setCurrentTickers, addToFavoriteTickers, removeFromFavoriteTickers, setFavoriteTickers } = tickerSlice.actions;
 export default tickerSlice.reducer;
+
+

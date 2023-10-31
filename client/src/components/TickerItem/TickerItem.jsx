@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import { Row, Text } from './TickerItem.styled';
-import ToggleButton from '../ToggleButton/ToggleButton';
 
 const TickerItem = ({ tickerItem }) => {
 
@@ -36,10 +35,8 @@ const TickerItem = ({ tickerItem }) => {
       <td><Text>{dividend}</Text></td>
       <td><Text>{profit}</Text></td>
       <td><Text>{formattedDate}</Text></td>
-      <td>
-        <ToggleButton />
-      </td>
   </Row>
+
   );
 };
 

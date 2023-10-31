@@ -1,28 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { socket } from '../../service/connection';
-import { currentTickers } from "../../redux/tickerSlice";
+import {socket} from '../../service/connection';
+import { setCurrentTickers } from "../../redux/tickerSlice";
 import TickerItem from '../TickerItem/TickerItem';
 
 import { Table, Head, Row, HeadTitle } from './TickersList.styled';
 
 const TickersList = () => {
   const dispatch = useDispatch();
-  const tickers = useSelector((state) => state.tickers);
+  const currentTickers = useSelector((state) => state.tickers.currentTickers);
+
   useEffect(() => {
     socket.emit("start");
     socket.on("ticker", (quote) => {
-      dispatch(currentTickers(quote));
+      dispatch(setCurrentTickers(quote));
     });
+
     return () => {
-      socket.on("disconnect", () => {
-        socket.off("ticker");
-      }); 
+      socket.on("disconnect");
     }
   }, [dispatch]);
 
+
   return (
-  
+
       <Table>
         <Head>
       <Row>
@@ -33,18 +34,16 @@ const TickersList = () => {
         <HeadTitle>Dividend</HeadTitle>
         <HeadTitle>Yield</HeadTitle>
         <HeadTitle>Last traded</HeadTitle>
-        <HeadTitle>Tracking On/Off</HeadTitle>
+ 
       </Row>
       </Head>
       <tbody> 
-        {tickers.map((tickerItem) => (
-          <TickerItem key={tickerItem.ticker} tickerItem={tickerItem} />
-          ))
-        }  
+        {currentTickers.map((tickerItem) => (
+          <TickerItem key={tickerItem.ticker} tickerItem={tickerItem}/>
+        ))
+        }
      </tbody> 
       </Table>
-     
-    
   );
 };
 
